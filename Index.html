@@ -1,0 +1,802 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EPFO Automation | Simplify Your EPF Access</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            overflow-x: hidden;
+        }
+
+        /* Navigation */
+        nav {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 1rem 5%;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: white;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: opacity 0.3s;
+        }
+
+        .nav-links a:hover {
+            opacity: 0.8;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 150px 5% 100px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="rgba(255,255,255,0.1)" d="M0,96L48,112C96,128,192,160,288,160C384,160,480,128,576,112C672,96,768,96,864,112C960,128,1056,160,1152,160C1248,160,1344,128,1392,112L1440,96L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>') no-repeat bottom;
+            background-size: cover;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            animation: fadeInDown 1s;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            opacity: 0.95;
+            animation: fadeInUp 1s;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            animation: fadeIn 1.5s;
+        }
+
+        .btn {
+            padding: 12px 30px;
+            border: none;
+            border-radius: 50px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-primary {
+            background: white;
+            color: #667eea;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: white;
+            border: 2px solid white;
+        }
+
+        .btn-secondary:hover {
+            background: white;
+            color: #667eea;
+        }
+
+        /* Features Section */
+        .features {
+            padding: 80px 5%;
+            background: #f8f9fa;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: #333;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .feature-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            transition: all 0.3s;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+        }
+
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .feature-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: #667eea;
+        }
+
+        /* How It Works */
+        .how-it-works {
+            padding: 80px 5%;
+            background: white;
+        }
+
+        .steps {
+            max-width: 1000px;
+            margin: 0 auto;
+            display: grid;
+            gap: 2rem;
+        }
+
+        .step {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+            padding: 2rem;
+            background: #f8f9fa;
+            border-radius: 15px;
+            transition: all 0.3s;
+        }
+
+        .step:hover {
+            background: linear-gradient(135deg, #667eea15 0%, #764ba215 100%);
+        }
+
+        .step-number {
+            font-size: 3rem;
+            font-weight: bold;
+            color: #667eea;
+            min-width: 80px;
+            text-align: center;
+        }
+
+        .step-content h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+            color: #333;
+        }
+
+        /* Tech Stack */
+        .tech-stack {
+            padding: 80px 5%;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+
+        .tech-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 2rem;
+            max-width: 1000px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .tech-item {
+            padding: 1.5rem;
+            background: rgba(255,255,255,0.1);
+            border-radius: 10px;
+            transition: all 0.3s;
+        }
+
+        .tech-item:hover {
+            background: rgba(255,255,255,0.2);
+            transform: scale(1.05);
+        }
+
+        .tech-item h4 {
+            margin-top: 0.5rem;
+            font-size: 1.2rem;
+        }
+
+        /* Documentation Section */
+        .documentation {
+            padding: 80px 5%;
+            background: white;
+        }
+
+        .docs-container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .doc-section {
+            background: #f8f9fa;
+            padding: 2rem;
+            border-radius: 15px;
+            margin-bottom: 2rem;
+            border-left: 4px solid #667eea;
+        }
+
+        .doc-section h3 {
+            color: #667eea;
+            margin-bottom: 1.5rem;
+            font-size: 1.5rem;
+        }
+
+        .code-block {
+            background: #2d3748;
+            color: #a0aec0;
+            padding: 1.5rem;
+            border-radius: 10px;
+            overflow-x: auto;
+            margin-top: 1rem;
+        }
+
+        .code-block pre {
+            margin: 0;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+
+        .code-block code {
+            color: #68d391;
+        }
+
+        .requirements-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .requirements-list li {
+            padding: 0.8rem 0;
+            font-size: 1.1rem;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        .requirements-list li:last-child {
+            border-bottom: none;
+        }
+
+        .troubleshooting-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+
+        .trouble-item {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .trouble-item h4 {
+            color: #667eea;
+            margin-bottom: 0.5rem;
+        }
+
+        .trouble-item code {
+            background: #2d3748;
+            color: #68d391;
+            padding: 0.2rem 0.5rem;
+            border-radius: 4px;
+            font-size: 0.85rem;
+        }
+
+        .repo-section {
+            background: linear-gradient(135deg, #667eea15 0%, #764ba215 100%);
+            border-left: 4px solid #764ba2;
+        }
+
+        .repo-stats {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .repo-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: #667eea;
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+            align-self: flex-start;
+        }
+
+        .repo-link:hover {
+            background: #764ba2;
+            transform: translateX(5px);
+        }
+
+        .repo-icon {
+            font-size: 1.5rem;
+        }
+
+        .repo-details {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+        }
+
+        .repo-detail {
+            padding: 1rem;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+
+        .repo-detail strong {
+            color: #667eea;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Support Section */
+        .support {
+            padding: 80px 5%;
+            background: #f8f9fa;
+            text-align: center;
+        }
+
+        .support-content {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .upi-box {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            margin: 2rem 0;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .upi-id {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #667eea;
+            padding: 1rem;
+            background: #f8f9fa;
+            border-radius: 10px;
+            margin: 1rem 0;
+        }
+
+        /* Footer */
+        footer {
+            background: #2d3748;
+            color: white;
+            padding: 3rem 5%;
+            text-align: center;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            margin: 1.5rem 0;
+        }
+
+        .social-links a {
+            color: white;
+            font-size: 1.5rem;
+            transition: color 0.3s;
+        }
+
+        .social-links a:hover {
+            color: #667eea;
+        }
+
+        /* Animations */
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero p {
+                font-size: 1.1rem;
+            }
+
+            .nav-links {
+                gap: 1rem;
+                font-size: 0.9rem;
+            }
+
+            .step {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .code-block pre {
+                font-size: 0.75rem;
+            }
+
+            .repo-details {
+                grid-template-columns: 1fr;
+            }
+
+            .troubleshooting-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <div class="logo">
+                🔐 EPFO Automation
+            </div>
+            <ul class="nav-links">
+                <li><a href="#features">Features</a></li>
+                <li><a href="#how-it-works">How It Works</a></li>
+                <li><a href="#docs">Documentation</a></li>
+                <li><a href="#tech">Technology</a></li>
+                <li><a href="#support">Support</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Simplify Your EPF Access</h1>
+            <p>Automate your EPFO portal access with our Python-based solution. View passbook, service history, and more with just a few clicks.</p>
+            <div class="cta-buttons">
+                <a href="https://github.com/Deadshot0x7/EPFO---ATUOBOT-" class="btn btn-primary" target="_blank">Get Started</a>
+                <a href="#how-it-works" class="btn btn-secondary">Learn More</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="features">
+        <h2 class="section-title">Powerful Features</h2>
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon">🔐</div>
+                <h3>Secure Login</h3>
+                <p>Login securely to EPFO portal with UAN and password validation</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">📖</div>
+                <h3>View Passbook</h3>
+                <p>Access your complete EPF passbook with transaction history</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">📊</div>
+                <h3>Service History</h3>
+                <p>Retrieve your complete employment service history instantly</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">💾</div>
+                <h3>Download PDF</h3>
+                <p>Download your passbook as PDF for offline access</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">✅</div>
+                <h3>Input Validation</h3>
+                <p>Automatic validation of UAN format and credentials</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🤖</div>
+                <h3>Browser Automation</h3>
+                <p>Automated navigation through EPFO portal using Selenium</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works -->
+    <section id="how-it-works" class="how-it-works">
+        <h2 class="section-title">How It Works</h2>
+        <div class="steps">
+            <div class="step">
+                <div class="step-number">01</div>
+                <div class="step-content">
+                    <h3>Clone & Install</h3>
+                    <p>Clone the repository and install required dependencies using pip</p>
+                </div>
+            </div>
+            <div class="step">
+                <div class="step-number">02</div>
+                <div class="step-content">
+                    <h3>Run Script</h3>
+                    <p>Execute the Python script and enter your UAN and password</p>
+                </div>
+            </div>
+            <div class="step">
+                <div class="step-number">03</div>
+                <div class="step-content">
+                    <h3>Solve Captcha</h3>
+                    <p>Manually solve the captcha when the browser opens</p>
+                </div>
+            </div>
+            <div class="step">
+                <div class="step-number">04</div>
+                <div class="step-content">
+                    <h3>Access Data</h3>
+                    <p>Choose to view passbook, service history, or both</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Documentation Section -->
+    <section id="docs" class="documentation">
+        <h2 class="section-title">Documentation</h2>
+        <div class="docs-container">
+            <div class="doc-section">
+                <h3>📦 Installation</h3>
+                <div class="code-block">
+                    <pre><code># Clone the repository
+git clone https://github.com/Deadshot0x7/EPFO---ATUOBOT-.git
+cd EPFO---ATUOBOT-
+
+# Create virtual environment
+python -m venv venv
+
+# Activate virtual environment
+# Windows:
+venv\Scripts\activate
+# Linux/Mac:
+source venv/bin/activate
+
+# Install dependencies
+pip install -r requirements.txt</code></pre>
+                </div>
+            </div>
+
+            <div class="doc-section">
+                <h3>🚀 Quick Start</h3>
+                <div class="code-block">
+                    <pre><code># Run the script
+python epfo_access.py
+
+# Follow the prompts:
+# 1. Enter your UAN (12 digits)
+# 2. Enter your password
+# 3. Solve the captcha
+# 4. Choose what to access</code></pre>
+                </div>
+            </div>
+
+            <div class="doc-section">
+                <h3>📋 Requirements</h3>
+                <ul class="requirements-list">
+                    <li>✅ Python 3.7 or higher</li>
+                    <li>✅ Google Chrome Browser (latest version)</li>
+                    <li>✅ ChromeDriver (auto-installed with webdriver-manager)</li>
+                    <li>✅ Active EPFO account with UAN</li>
+                    <li>✅ Stable internet connection</li>
+                </ul>
+            </div>
+
+            <div class="doc-section">
+                <h3>⚙️ Configuration</h3>
+                <p>For headless mode (no browser window), edit the script:</p>
+                <div class="code-block">
+                    <pre><code># Uncomment this line in epfo_access.py
+chrome_options.add_argument('--headless')</code></pre>
+                </div>
+            </div>
+
+            <div class="doc-section">
+                <h3>🔧 Troubleshooting</h3>
+                <div class="troubleshooting-grid">
+                    <div class="trouble-item">
+                        <h4>ChromeDriver Issues</h4>
+                        <p>Run: <code>pip install --upgrade webdriver-manager</code></p>
+                    </div>
+                    <div class="trouble-item">
+                        <h4>Element Not Found</h4>
+                        <p>Check internet connection and EPFO portal status</p>
+                    </div>
+                    <div class="trouble-item">
+                        <h4>Login Failed</h4>
+                        <p>Verify UAN and password on EPFO portal first</p>
+                    </div>
+                    <div class="trouble-item">
+                        <h4>Captcha Expired</h4>
+                        <p>Solve captcha quickly or refresh the page</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="doc-section repo-section">
+                <h3>📚 Repository Information</h3>
+                <div class="repo-stats">
+                    <a href="https://github.com/Deadshot0x7/EPFO---ATUOBOT-" target="_blank" class="repo-link">
+                        <span class="repo-icon">🔗</span>
+                        <span>View on GitHub</span>
+                    </a>
+                    <div class="repo-details">
+                        <div class="repo-detail">
+                            <strong>Repository:</strong> EPFO---ATUOBOT-
+                        </div>
+                        <div class="repo-detail">
+                            <strong>Author:</strong> Deadshot0x7
+                        </div>
+                        <div class="repo-detail">
+                            <strong>License:</strong> MIT
+                        </div>
+                        <div class="repo-detail">
+                            <strong>Language:</strong> Python
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tech Stack -->
+    <section id="tech" class="tech-stack">
+        <h2 class="section-title">Built With Modern Technology</h2>
+        <div class="tech-grid">
+            <div class="tech-item">
+                <div style="font-size: 3rem;">🐍</div>
+                <h4>Python 3.7+</h4>
+            </div>
+            <div class="tech-item">
+                <div style="font-size: 3rem;">🌐</div>
+                <h4>Selenium</h4>
+            </div>
+            <div class="tech-item">
+                <div style="font-size: 3rem;">🔧</div>
+                <h4>WebDriver</h4>
+            </div>
+            <div class="tech-item">
+                <div style="font-size: 3rem;">📡</div>
+                <h4>Requests</h4>
+            </div>
+        </div>
+    </section>
+
+    <!-- Support Section -->
+    <section id="support" class="support">
+        <h2 class="section-title">Support the Project</h2>
+        <div class="support-content">
+            <p style="font-size: 1.2rem; margin-bottom: 2rem;">
+                If you find this project helpful, consider supporting its development!
+            </p>
+            <div class="upi-box">
+                <h3 style="color: #667eea; margin-bottom: 1rem;">☕ Buy Me a Coffee</h3>
+                <p style="margin-bottom: 1rem;">Support via UPI</p>
+                <div class="upi-id">sviquarahmed@okaxis</div>
+                <p style="font-size: 0.9rem; color: #666;">Your support helps maintain and improve this project</p>
+            </div>
+            <div style="margin-top: 2rem;">
+                <h4 style="margin-bottom: 1rem; color: #333;">Other Ways to Support</h4>
+                <p>⭐ Star the repository • 🐛 Report bugs • 💡 Suggest features • 🤝 Contribute code</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <h3>EPFO Automation Bot</h3>
+            <div class="social-links">
+                <a href="https://github.com/Deadshot0x7" target="_blank">🐙 GitHub</a>
+                <a href="mailto:sviquarahmed@gmail.com">📧 Email</a>
+            </div>
+            <p style="margin-top: 1.5rem; opacity: 0.8;">
+                © 2025 Deadshot0x7. Made with ❤️ for easier EPFO access
+            </p>
+            <p style="margin-top: 0.5rem; font-size: 0.9rem; opacity: 0.7;">
+                This is an unofficial automation tool and is not affiliated with EPFO or the Government of India
+            </p>
+        </div>
+    </footer>
+</body>
+</html>
