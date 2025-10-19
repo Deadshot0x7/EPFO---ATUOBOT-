@@ -312,6 +312,116 @@
             background: white;
         }
 
+        /* Video Tutorial Announcement */
+        .video-announcement {
+            max-width: 700px;
+            margin: 0 auto 3rem;
+            padding: 2.5rem;
+            background: linear-gradient(135deg, #667eea15, #764ba215);
+            border-radius: 20px;
+            text-align: center;
+            border: 2px solid var(--primary);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .video-announcement::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(
+                45deg,
+                transparent,
+                rgba(102, 126, 234, 0.1),
+                transparent
+            );
+            animation: shimmer 3s infinite;
+        }
+
+        @keyframes shimmer {
+            0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+            100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
+        }
+
+        .video-announcement > * {
+            position: relative;
+            z-index: 1;
+        }
+
+        .video-icon {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+
+        .video-announcement h3 {
+            font-size: 1.8rem;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .video-announcement p {
+            font-size: 1.1rem;
+            color: #666;
+            margin-bottom: 1.5rem;
+        }
+
+        .coming-soon-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.8rem;
+            padding: 0.8rem 2rem;
+            background: var(--primary);
+            color: white;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1rem;
+            box-shadow: 0 5px 20px rgba(102, 126, 234, 0.4);
+        }
+
+        .pulse-dot {
+            width: 12px;
+            height: 12px;
+            background: #ff4757;
+            border-radius: 50%;
+            animation: pulse 2s ease-in-out infinite;
+            position: relative;
+        }
+
+        .pulse-dot::before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: #ff4757;
+            border-radius: 50%;
+            animation: pulse-ring 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+
+        @keyframes pulse-ring {
+            0% {
+                transform: scale(1);
+                opacity: 1;
+            }
+            100% {
+                transform: scale(2.5);
+                opacity: 0;
+            }
+        }
+
         .steps {
             max-width: 1000px;
             margin: 0 auto;
@@ -1136,6 +1246,22 @@
                 width: 100%;
                 justify-content: center;
             }
+
+            .video-announcement {
+                padding: 2rem 1.5rem;
+            }
+
+            .video-icon {
+                font-size: 3rem;
+            }
+
+            .video-announcement h3 {
+                font-size: 1.5rem;
+            }
+
+            .video-announcement p {
+                font-size: 1rem;
+            }
         }
     </style>
 </head>
@@ -1219,6 +1345,18 @@
     <section id="how-it-works" class="how-it-works">
         <h2 class="section-title">How It Works</h2>
         <p class="section-subtitle">Get started in 4 simple steps</p>
+        
+        <!-- Video Tutorial Coming Soon -->
+        <div class="video-announcement">
+            <div class="video-icon">🎬</div>
+            <h3>Video Tutorial Coming Soon!</h3>
+            <p>We're creating a comprehensive video guide to help you get started quickly</p>
+            <div class="coming-soon-badge">
+                <span class="pulse-dot"></span>
+                <span>In Production</span>
+            </div>
+        </div>
+
         <div class="steps">
             <div class="step">
                 <div class="step-number">01</div>
