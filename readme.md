@@ -335,8 +335,8 @@ If you find this project helpful, please consider giving it a star! ⭐
 ## 👨‍💻 Author
 
 **Your Name**
-- GitHub: [@yourusername](https://github.com/yourusername)
-- Email: your.email@example.com
+- GitHub: [@Deadshot0x7](https://github.com/Deadshot0x7)
+- Email: sviquarahmed@gmail.com
 
 ## 🙏 Acknowledgments
 
