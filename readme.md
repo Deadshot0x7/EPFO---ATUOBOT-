@@ -151,16 +151,6 @@ prefs = {
 chrome_options.add_experimental_option("prefs", prefs)
 ```
 
-## 🖼️ Screenshots
-
-### Login Screen
-![Login Screen](screenshots/login.png)
-
-### Passbook View
-![Passbook](screenshots/passbook.png)
-
-### Service History
-![Service History](screenshots/service-history.png)
 
 ## 🐛 Troubleshooting
 
