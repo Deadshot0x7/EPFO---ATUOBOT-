@@ -13,7 +13,6 @@ A Python automation script to access your EPFO (Employees' Provident Fund Organi
 - [Installation](#installation)
 - [Usage](#usage)
 - [Configuration](#configuration)
-- [Screenshots](#screenshots)
 - [Troubleshooting](#troubleshooting)
 - [Security](#security)
 - [Contributing](#contributing)
@@ -44,7 +43,7 @@ Before you begin, ensure you have the following installed:
 ### Step 1: Clone the Repository
 
 ```bash
-git clone https://github.com/yourusername/epfo-access-automation.git
+git clone https://github.com/Deadshot0x7/epfo-access-automation.git
 cd epfo-access-automation
 ```
 
@@ -150,7 +149,6 @@ prefs = {
 }
 chrome_options.add_experimental_option("prefs", prefs)
 ```
-
 
 ## 🐛 Troubleshooting
 
@@ -262,7 +260,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 ```
 MIT License
 
-Copyright (c) 2025 [Your Name]
+Copyright (c) 2025 Deadshot0x7
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -292,7 +290,7 @@ This is an **unofficial** automation script and is **NOT affiliated** with EPFO 
 If you encounter any issues or have questions:
 
 1. Check the [Troubleshooting](#troubleshooting) section
-2. Search existing [Issues](https://github.com/yourusername/epfo-access-automation/issues)
+2. Search existing [Issues](https://github.com/Deadshot0x7/epfo-access-automation/issues)
 3. Create a new issue with:
    - Error message
    - Python version
@@ -320,22 +318,49 @@ If you encounter any issues or have questions:
 
 If you find this project helpful, please consider giving it a star! ⭐
 
-[![Star History Chart](https://api.star-history.com/svg?repos=yourusername/epfo-access-automation&type=Date)](https://star-history.com/#yourusername/epfo-access-automation&Date)
+[![Star History Chart](https://api.star-history.com/svg?repos=Deadshot0x7/epfo-access-automation&type=Date)](https://star-history.com/#Deadshot0x7/epfo-access-automation&Date)
 
 ## 👨‍💻 Author
 
-**Your Name**
+**Deadshot0x7**
 - GitHub: [@Deadshot0x7](https://github.com/Deadshot0x7)
 - Email: sviquarahmed@gmail.com
+
+## 💖 Support the Project
+
+If you find this project helpful and would like to support its development, you can buy me a coffee! ☕
+
+### UPI Payment
+<p align="center">
+  <img src="https://img.shields.io/badge/UPI-sviquarahmed@okaxis-orange?style=for-the-badge&logo=upi" alt="UPI">
+</p>
+
+**UPI ID:** `sviquarahmed@okaxis`
+
+Your support helps keep this project maintained and improved. Thank you! 🙏
+
+### Other Ways to Support
+- ⭐ Star this repository
+- 🐛 Report bugs and issues
+- 💡 Suggest new features
+- 🤝 Contribute code
+- 📢 Share with others who might find it useful
 
 ## 🙏 Acknowledgments
 
 - Selenium WebDriver team
 - Python community
 - All contributors to this project
+- Everyone who has supported this project
 
 ---
 
 **Made with ❤️ for easier EPFO access**
 
 **⚡ Remember:** This tool is meant to simplify your EPFO access, not replace the official portal. Always verify important information on the official EPFO website.
+
+---
+
+<p align="center">
+  <sub>If this project helped you, consider supporting it! 💝</sub>
+</p>
